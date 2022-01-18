@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>會員登入頁面</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="PopStyle.css" />
+        <style>
+            .color1 {
+                background-color: #234a63;
+            }
+            .color2 {
+                background-color: #95a59d;
+            }
+            .color3 {
+                background-color: #b95159;
+            }
+            .color4 {
+                background-color: #e5c45b;
+            }
+            .color5 {
+                background-color: #b3a75d;
+            }
+            .color6 {
+                background-color: #e6e6e6;
+            }
+
+            .socialIcons i:hover {
+                color: blue;
+            }
+            .bellMessage {
+                height: 30px;
+            }
+            .w-35 {
+                width: 35px;
+            }
+            .imgLogo {
+                width: 35px;
+            }
+            .imgHead {
+                width: 55px;
+                margin: auto;
+            }
+        </style>
+    </head>
+
+    <body class="color1">
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-md bg-info navbar-dark">
+            <a class="navbar-brand" href="#"><img src="tent.png" class="imgLogo" alt="Logo" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#buger">
+                <span class="navbar-toggler-icon"></span>
+                <!-- 漢堡的內容 -->
+            </button>
+            <div class="collapse navbar-collapse" id="buger">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                <!-- 小鈴鐺 -->
+                <div class="socialIcons mb-2">
+                    <i class="fas fa-bell dropdown-menu-right" data-toggle="dropdown"></i>
+                    <ul class="dropdown-menu dropdown-menu-md-right w-25">
+                        <li class="d-flex bellMessage">
+                            <div class="col-3">通知</div>
+                            <div class="col-6 text-truncate">123dfsdfdfdjkdjdkf</div>
+                            <div class="col-3">.</div>
+                        </li>
+                        <hr />
+                        <li class="d-flex bellMessage">通知2</li>
+                        <hr />
+                        <li class="d-flex bellMessage">通知3</li>
+                    </ul>
+                </div>
+                <!-- 會員 -->
+                <div class="socialIcons mb-2 ml-md-4" id="userLogin">
+                    <i class="fas fa-user" data-toggle="modal" data-target="#loginMember"></i>
+                </div>
+                <!-- 下拉選單Dropdown Menu -->
+                <div id="userSetting" class="dropdown mb-2 ml-md-4" style="display: none">
+                    <i class="fas fa-user" data-toggle="dropdown"></i>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><button class="dropdown-item" type="button">我的帳戶</button></li>
+                        <li><button class="dropdown-item" type="button">我的訂單</button></li>
+                        <li><button class="dropdown-item" type="button">收藏清單</button></li>
+                        <li><button class="dropdown-item" type="button" onclick="login()">登出</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- 會員視窗 -->
+        <div class="color4">
+            <!-- 跳出視窗內容 -->
+            <div class="modal" id="loginMember">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content align-items-center">
+                        <!-- Header -->
+                        <div class="modal-header">
+                            <h3>會員登入</h3>
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                        </div>
+                        <!-- Body -->
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="email" class="account form-control" placeholder="example@mail.com" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="password form-control" placeholder="Password" />
+                                </div>
+                                <div class="form-group"><input type="checkbox" class="remember" /> 記住我</div>
+                            </form>
+                            <button type="button" onclick="login()" class="btn btn-info col">登入</button>
+                            <button type="button" onclick="register()" class="btn btn-info col d-none">註冊</button>
+                        </div>
+                        <!-- Footer -->
+                        <div class="modal-footer">
+                            <div class="toSignup">
+                                <span>尚未成為會員</span>
+                                <a href="#" type="button" class="member">註冊</a>
+                            </div>
+                            <div class="toLogin">
+                                <span>尚未成為會員</span>
+                                <a href="#" type="button" class="member">註冊</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JS寫在下面 -->
+        <script>
+            let isLogin = 0;
+            function login() {
+                if (isLogin == 0) {
+                    $("#userLogin").hide();
+                    $("#userSetting").show();
+                    isLogin = 1;
+                } else {
+                    $("#userLogin").css("display", "block");
+                    $("#userSetting").css("display", "none");
+                    isLogin = 0;
+                }
+            }
+        </script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
