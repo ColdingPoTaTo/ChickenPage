@@ -134,12 +134,12 @@
                         <!-- Footer -->
                         <div class="modal-footer">
                             <div class="toSignup">
-                                <span>尚未成為會員</span>
+                                <span>尚未成為會員?</span>
                                 <a href="#" type="button" class="member">註冊</a>
                             </div>
-                            <div class="toLogin">
-                                <span>尚未成為會員</span>
-                                <a href="#" type="button" class="member">註冊</a>
+                            <div class="toLogin d-none">
+                                <span>已經是會員?</span>
+                                <a href="#" type="button" class="member">登入</a>
                             </div>
                         </div>
                     </div>
@@ -148,21 +148,6 @@
         </div>
 
         <!-- JS寫在下面 -->
-        <script>
-            let isLogin = 0;
-            function login() {
-                if (isLogin == 0) {
-                    $("#userLogin").hide();
-                    $("#userSetting").show();
-                    isLogin = 1;
-                } else {
-                    $("#userLogin").css("display", "block");
-                    $("#userSetting").css("display", "none");
-                    isLogin = 0;
-                }
-            }
-        </script>
-
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -178,5 +163,32 @@
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            // 登入or註冊的切換
+            $(".modal-footer>>a").click(function () {
+                // $("#nm_p").addClass("another"); // 追加樣式
+                $(".toSignup").toggleClass("d-none");
+                $(".toLogin").toggleClass("d-none");
+                if ($(".toSignup").hasClass("d-none")) {
+                    $(".modal-header>h3").text("註冊會員");
+                } else {
+                    $(".modal-header>h3").text("會員登入");
+                }
+            });
+
+            let isLogin = 0;
+            function login() {
+                if (isLogin == 0) {
+                    $("#userLogin").hide();
+                    $("#userSetting").show();
+                    isLogin = 1;
+                } else {
+                    $("#userLogin").css("display", "block");
+                    $("#userSetting").css("display", "none");
+                    isLogin = 0;
+                }
+            }
+        </script>
     </body>
 </html>
